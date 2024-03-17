@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./*{html,js,php}'],
+  content: ['./*{html,js,php}',
+            './css/*{html,js,php}'
+           ],
   theme: {
     extend: {
       fontFamily: {
@@ -8,7 +10,8 @@ module.exports = {
         'openSans': ['"Open Sans"']
      },
      backgroundImage: {
-       'registerPageBackground': "url('images/registerPageBackground.png')"
+       'registerPageBackground': "url('../images/registerPageBackground.png')",
+       'stockphoto1': "url('../images/stockphoto1.jpg')"
      }
     },
   },

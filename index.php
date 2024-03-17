@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=\, initial-scale=1.0">
 </head>
 <body> 
-    <p><a href="register.php">Register</a></p>
+    <p style="font-size:xx-large;"><a href="register.php">Register</a></p>
+    <p style="font-size:xx-large;"><a href="login.php">Login</a></p>
 </body>
 </html>
