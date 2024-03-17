@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2024 at 03:13 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Mar 17, 2024 at 12:06 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tbluserprofile` (
   `userid` int(5) NOT NULL,
-  `firstname` varchar(20) NOT NULL,
-  `lastname` varchar(20) NOT NULL,
-  `gender` varchar(15) NOT NULL
+  `firstname` varchar(60) NOT NULL,
+  `lastname` varchar(60) NOT NULL,
+  `gender` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -39,10 +39,10 @@ CREATE TABLE `tbluserprofile` (
 --
 
 INSERT INTO `tbluserprofile` (`userid`, `firstname`, `lastname`, `gender`) VALUES
-(1, 'Mark', 'Baring', 'Male'),
-(2, 'Mark2', 'Baring2', 'Male'),
-(3, 'Maurice', 'Tañeca', 'Male'),
-(8, 'Charles', 'hguydar', 'male');
+(9, 'Raphale Chis', 'Osorio', 'Male'),
+(10, 'Slamm Khelmer', 'Luab', 'Male'),
+(11, 'Carl ', 'Veloso', 'Male'),
+(12, 'Mark Adrian', 'Baring', 'Male');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +62,7 @@ ALTER TABLE `tbluserprofile`
 -- AUTO_INCREMENT for table `tbluserprofile`
 --
 ALTER TABLE `tbluserprofile`
-  MODIFY `userid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `userid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
