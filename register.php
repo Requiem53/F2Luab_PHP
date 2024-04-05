@@ -68,7 +68,6 @@
 
 <?php
     	if(isset($_POST['btnRegister'])){	
-            echo 'Test';	
             $fname=$_POST['regFirstName'];		
             $lname=$_POST['regLastName'];
             $gender=$_POST['regGender'];
@@ -76,16 +75,20 @@
             $uname=$_POST['regUserName'];
             $pword=$_POST['regPassword'];
             
-            $sql1 ="Insert into tbluserprofile(firstname,lastname,gender) values('".$fname."','".$lname."','".$gender."')";
-            
             $sql2 ="Select * from tbluseraccount where username='".$uname."'";
             $result = mysqli_query($connection,$sql2);
             $row = mysqli_num_rows($result);
+
             if($row == 0){
                 $hash_pass = password_hash($pword, PASSWORD_DEFAULT);
                 $sql ="Insert into tbluseraccount(emailadd,username,password) values('".$email."','".$uname."','".$hash_pass."')";
                 mysqli_query($connection,$sql);
+
+                $maybekey = mysqli_insert_id($connection);
+                
+                $sql1 ="Insert into tbluserprofile(firstname,lastname,gender, acctid) values('".$fname."','".$lname."','".$gender."', '".$maybekey."')";
                 mysqli_query($connection,$sql1);
+                
                 echo "<script>
                         $(\"#registerSuccessAlert\").fadeIn();
                         $(\"#closeAlert\").click(function(){

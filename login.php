@@ -48,7 +48,6 @@
             $pword=$_POST['logPassword'];
             
             $usernames ="Select * from tbluseraccount where username='".$uname."'";
-            
             $result = mysqli_query($connection,$usernames);
             $row = mysqli_num_rows($result);
             $user_data = mysqli_fetch_array($result);
