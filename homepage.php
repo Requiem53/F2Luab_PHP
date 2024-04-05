@@ -15,8 +15,10 @@
     <div id="loginAlert" class="p-5 bg-green-500 text-base text-white fixed top-4">
         <span id="closeAlert" class="ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black">&times;</span> 
         <strong>Successfully logged in!</strong> Feel free to browse around.
+        
     </div>
 
+    <button onclick="location.href ='searchUser.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">Search Users</button>
     <img src="images\stockphoto1.jpg" class="w-1/3 h-1/3">
 
     <script>

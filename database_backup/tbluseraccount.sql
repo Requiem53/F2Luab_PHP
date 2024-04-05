@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2024 at 12:06 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Apr 05, 2024 at 04:11 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,9 @@ INSERT INTO `tbluseraccount` (`acctid`, `emailadd`, `username`, `password`, `use
 (5, 'raphaelchase302@gmail.com', 'theChis!', '$2y$10$Y3qoGSVo6UxR4XozLLyV7OAD7wWhwypW5WZDn0a1Q2Yguw4OsyvdC', ''),
 (7, 'slammkhelmer@gmail.com', 'Requiem53', '$2y$10$NGBeSMG3nGth6pAmxjaL1eTezyx8SJUPwox2liFsJVjfvkfxpahei', ''),
 (8, 'carlveloso@gmail.com', 'Vsucram', '$2y$10$dx/l7t2hNUq2EIMHsUQ/ouWrGBiulZ/M/hr6oTN0tvJZ.JDImCPZ.', ''),
-(9, 'markbaring926@gmail.com', 'xfinity', '$2y$10$ryiUWix.6/UjV75GUXrDGOuvAVxM6/Zo6oJ7XbB14aW9kIDcTfUrG', '');
+(9, 'markbaring926@gmail.com', 'xfinity', '$2y$10$ryiUWix.6/UjV75GUXrDGOuvAVxM6/Zo6oJ7XbB14aW9kIDcTfUrG', ''),
+(10, 'testaccount@gmail.com', 'TestAccount', '$2y$10$QSe2XcXDL0NJ2HNiMOG3pePmd9PkUYj0jsON76gvnMKzd2pWeunke', ''),
+(11, 'sl@gmail.com', 'Vsu', '$2y$10$PcAPVhREGPzBeXkrLJNHp.kAp3g67ZPXaCrBDvIw7KMZVFerBS6Xu', '');
 
 --
 -- Indexes for dumped tables
@@ -63,7 +65,7 @@ ALTER TABLE `tbluseraccount`
 -- AUTO_INCREMENT for table `tbluseraccount`
 --
 ALTER TABLE `tbluseraccount`
-  MODIFY `acctid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `acctid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
