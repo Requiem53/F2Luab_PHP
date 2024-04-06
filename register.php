@@ -75,7 +75,7 @@
             </div>
 
             <div id="registerSuccessAlert" class="p-5 bg-green-500 text-base text-white fixed top-4 hidden">
-                <span id="closeAlert" class="ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black">&times;</span> 
+                <span id="closeAlert2" class="ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black">&times;</span> 
                 <strong>Successfully registered!</strong> You can now try logging in.
             </div>
     </form>
@@ -109,13 +109,27 @@
                 
                 echo "<script>
                         $(\"#registerSuccessAlert\").fadeIn();
-                        $(\"#closeAlert\").click(function(){
+
+                        function fadeDelay(){
+                            $(\"#registerSuccessAlert\").fadeOut(400);
+                        }
+
+                        const timeout = setTimeout(fadeDelay, 3000);
+
+                        $(\"#closeAlert2\").click(function(){
                             $(\"#registerSuccessAlert\").fadeOut(100);
                         });
                     </script>";
             }else{
                 echo "<script>
                         $(\"#usernameExistsAlert\").fadeIn();
+
+                        function fadeDelay(){
+                            $(\"#usernameExistsAlert\").fadeOut(400);
+                        }
+
+                        const timeout = setTimeout(fadeDelay, 3000);
+
                         $(\"#closeAlert\").click(function(){
                             $(\"#usernameExistsAlert\").fadeOut(100);
                         });

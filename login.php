@@ -60,11 +60,17 @@
             }else{
                 //fix wrong pass later
                 echo "<script>
-                console.log(\"baxtergames\");
-                $(\"#incorrectPassAlert\").fadeIn();
-                $(\"#closeAlert\").click(function(){
-                    $(\"#incorrectPassAlert\").fadeOut(100);
-                });
+                    $(\"#incorrectPassAlert\").fadeIn();
+
+                    function fadeDelay(){
+                        $(\"#incorrectPassAlert\").fadeOut(400);
+                    }
+
+                    const timeout = setTimeout(fadeDelay, 3000);
+
+                    $(\"#closeAlert\").click(function(){
+                        $(\"#incorrectPassAlert\").fadeOut(100);
+                    });
                 </script>";
             }
         }

@@ -1,3 +1,6 @@
+<?php
+    include 'connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,12 +26,15 @@
 
     <script>
         $(document).ready(function(){
-        console.log("baxter");
-        $("#loginAlert").hide().fadeIn();
-        $("#closeAlert").click(function(){
-            $("#loginAlert").fadeOut(100);
+            $("#loginAlert").hide().fadeIn();
+            function fadeDelay(){
+                            $("#loginAlert").fadeOut(400);
+                        }
+            const timeout = setTimeout(fadeDelay, 3000);
+            $("#closeAlert").click(function(){
+                $("#loginAlert").fadeOut(100);
+            });
         });
-    });
     </script>
 </body>
 </html>
