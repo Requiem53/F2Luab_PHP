@@ -30,10 +30,28 @@
         for($i = 0; $i < $row; $i++){
             echo "<p class=\"text-white\">";
             //0 - userid
-            //2 - Username
+            //3 - Username
             echo $user_data[$i][2];
             echo "<br>";
-            echo var_dump($user_data[$i]);
+
+            $accountKey = $user_data[$i][0];
+            $userProfile = "SELECT * FROM tbluserprofile WHERE acctid='".$accountKey."' ";
+            $result = mysqli_query($connection,$userProfile);
+            $user_profile = mysqli_fetch_all($result);  
+            $row2 = count($user_profile[0]);
+
+            echo $user_profile[0][1];
+            echo "<br>";
+            echo $user_profile[0][2];
+            echo "<br>";
+            echo $user_profile[0][3];
+            echo "<br>";
+            echo $user_profile[0][5];
+
+            // echo var_dump($user_data[$i]);
+            echo "<br>";
+            echo "<br>";
+            
             echo "</p>";
         }
     }

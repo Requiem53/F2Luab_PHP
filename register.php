@@ -16,53 +16,54 @@
     <title>Register</title>
 </head>
 <body class="bg-registerPageBackground"> 
-    <form method="post" class="font-poppins text-2xl flex flex-col items-center justify-center gap-7 my-6 mx-auto w-3/12 p-14 bg-neutral-50 bg-opacity-15">   
+    <form method="post" class="font-poppins text-2xl flex flex-col items-center justify-center gap-5 my-6 mx-auto w-3/12 p-14 bg-indigo-950 bg-opacity-75">
         <div class="mb-10 text-4xl text-white font-bold">Create your account</div>
             <div class="relative z-0 w-full">
-                <input type="text" name="regFirstName" class="block py-2.5 px-0 w-full text-xl text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                <label for="floating_standard" class="w-full absolute text-lg text-gray-200 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
-                    First Name</label>
-            </div>
-
-            <div class="relative z-0 w-full">
-                <input type="text" name="regLastName" class="block py-2.5 px-0 w-full text-xl text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                <label for="floating_standard" class="w-full absolute text-lg text-gray-200 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
-                    Last Name</label>
-            </div>
-
-            <div class="relative z-0 w-full">
-                <input type="text" name="regGender" class="block py-2.5 px-0 w-full text-xl text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                <label for="floating_standard" class="w-full absolute text-lg text-gray-200 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
-                    Gender</label>
-            </div>
-            
-            <!-- <div class="relative z-0 w-full">
-                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>Choose a country</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
-                    <option value="DE">Germany</option>    
-                </select>
-            </div> -->
-
-            <div class="relative z-0 w-full">
-                <input type="text" name="regEmail" class="block py-2.5 px-0 w-full text-xl text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                <label for="floating_standard" class="w-full absolute text-lg text-gray-200 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
-                    Email</label>
-            </div>
-
-            <div class="relative z-0 w-full">
-                <input type="text" name="regUserName" class="block py-2.5 px-0 w-full text-xl text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                <label for="floating_standard" class="w-full absolute text-lg text-gray-200 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
+                <label for="regUserName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Username</label>
+                <input type="text" name="regUserName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
             </div>
             
             <div class="relative z-0 w-full">
-                <input type="password" name="regPassword" class="block py-2.5 px-0 w-full text-xl text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                <label for="floating_standard" class="w-full absolute text-lg text-gray-200 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
+                <label for="regFirstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    First Name</label>
+                <input type="text" name="regFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+            </div>
+            
+            <div class="relative z-0 w-full">
+                <label for="regLastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Last Name</label>
+                <input type="text" name="regLastName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+            </div>
+                        
+            <div class="relative z-0 w-full">
+                <label for="regGender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Gender</label>
+                    <select name="regGender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        <option selected>Select your gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                        <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+            </div>
+
+            <div class="relative z-0 w-full">
+                <label for="regBirthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Birthday</label>
+                <input type="date" name="regBirthday" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+            </div>
+                        
+            <div class="relative z-0 w-full">
+                <label for="regEmail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Email</label>
+                <input type="text" name="regEmail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+            </div>
+
+            <div class="relative z-0 w-full">
+                <label for="regPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Password</label>
+                <input type="password" name="regPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
             </div>
 
             <button type="submit" name="btnRegister" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">Sign Up</button>  
@@ -83,11 +84,13 @@
 
 <?php
     	if(isset($_POST['btnRegister'])){	
+
+            $uname=$_POST['regUserName'];
             $fname=$_POST['regFirstName'];		
             $lname=$_POST['regLastName'];
             $gender=$_POST['regGender'];
+            $birthday=$_POST['regBirthday'];
             $email=$_POST['regEmail'];		
-            $uname=$_POST['regUserName'];
             $pword=$_POST['regPassword'];
             
             $sql2 ="Select * from tbluseraccount where username='".$uname."'";
@@ -101,7 +104,7 @@
 
                 $maybekey = mysqli_insert_id($connection);
                 
-                $sql1 ="Insert into tbluserprofile(firstname,lastname,gender, acctid) values('".$fname."','".$lname."','".$gender."', '".$maybekey."')";
+                $sql1 ="Insert into tbluserprofile(firstname,lastname,gender,acctid, birthday) values('".$fname."','".$lname."','".$gender."', '".$maybekey."','".$birthday."')";
                 mysqli_query($connection,$sql1);
                 
                 echo "<script>
