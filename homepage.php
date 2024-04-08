@@ -1,5 +1,6 @@
 <?php
     include 'connect.php';
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,3 +39,12 @@
     </script>
 </body>
 </html>
+
+<?php
+
+    if(isset($_SESSION['entryStatus'])){
+        echo $_SESSION['entryStatus'];
+    }
+
+
+?>

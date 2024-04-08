@@ -1,5 +1,6 @@
 <?php
     include 'connect.php';
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +85,6 @@
 
 <?php
     	if(isset($_POST['btnRegister'])){	
-
             $uname=$_POST['regUserName'];
             $fname=$_POST['regFirstName'];		
             $lname=$_POST['regLastName'];
@@ -98,6 +98,8 @@
             $row = mysqli_num_rows($result);
 
             if($row == 0){
+                header("Location: homepage.php");
+
                 $hash_pass = password_hash($pword, PASSWORD_DEFAULT);
                 $sql ="Insert into tbluseraccount(emailadd,username,password) values('".$email."','".$uname."','".$hash_pass."')";
                 mysqli_query($connection,$sql);
@@ -106,6 +108,8 @@
                 
                 $sql1 ="Insert into tbluserprofile(firstname,lastname,gender,acctid, birthday) values('".$fname."','".$lname."','".$gender."', '".$maybekey."','".$birthday."')";
                 mysqli_query($connection,$sql1);
+
+                $_SESSION['entryStatus'] = 'fromRegister';
                 
                 echo "<script>
                         $(\"#registerSuccessAlert\").fadeIn();

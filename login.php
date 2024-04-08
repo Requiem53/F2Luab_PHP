@@ -1,5 +1,6 @@
 <?php
     include 'connect.php';
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +58,7 @@
                 //Condition when user does not exist
             }else if(password_verify($pword, $hashed_password)){
                 header("Location: homepage.php");
+                exit();
             }else{
                 //fix wrong pass later
                 echo "<script>
