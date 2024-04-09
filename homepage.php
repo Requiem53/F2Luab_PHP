@@ -16,35 +16,53 @@
     <title>Home Page</title>
 </head>
 <body class="bg-registerPageBackground flex flex-col justify-center items-center my-48 transition-opacity">
-    <div id="loginAlert" class="p-5 bg-green-500 text-base text-white fixed top-4">
-        <span id="closeAlert" class="ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black">&times;</span> 
-        <strong>Successfully logged in!</strong> Feel free to browse around.
-        
-    </div>
-
     <button onclick="location.href ='searchUser.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">Search Users</button>
     <img src="images\stockphoto1.jpg" class="w-1/3 h-1/3">
-
-    <script>
-        $(document).ready(function(){
-            $("#loginAlert").hide().fadeIn();
-            function fadeDelay(){
-                            $("#loginAlert").fadeOut(400);
-                        }
-            const timeout = setTimeout(fadeDelay, 3000);
-            $("#closeAlert").click(function(){
-                $("#loginAlert").fadeOut(100);
-            });
-        });
-    </script>
 </body>
 </html>
 
 <?php
-
     if(isset($_SESSION['entryStatus'])){
-        echo $_SESSION['entryStatus'];
+        $entryInfo = explode(" ", $_SESSION['entryStatus']);
+
+        if($entryInfo[0] == "log"){
+            echo "
+                <div id=\"loginAlert\" class=\"p-5 bg-green-500 text-base text-white fixed top-4\">
+                    <span id=\"closeAlert\" class=\"ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black\">&times;</span> 
+                    <strong>Successfully logged in as {$entryInfo[1]}!</strong> Feel free to browse around.
+                </div>
+            
+                <script> 
+                function fadeDelay(){
+                    $(\"#loginAlert\").fadeOut(400);
+                }
+                const timeout = setTimeout(fadeDelay, 3000);
+                $(\"#closeAlert\").click(function(){
+                $(\"#loginAlert\").fadeOut(100);
+                });
+                </script>";
+        }else if($entryInfo[0] == "reg"){
+            echo "
+            <div id=\"loginAlert\" class=\"p-5 bg-green-500 text-base text-white fixed top-4\">
+                <span id=\"closeAlert\" class=\"ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black\">&times;</span> 
+                <strong>Successfully registered as {$entryInfo[1]}!</strong> Feel free to browse around.
+            </div>
+        
+            <script> 
+            function fadeDelay(){
+                $(\"#loginAlert\").fadeOut(400);
+            }
+            const timeout = setTimeout(fadeDelay, 3000);
+            $(\"#closeAlert\").click(function(){
+            $(\"#loginAlert\").fadeOut(100);
+            });
+            </script>";
+        }
+
+        $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
+    
+        if($pageWasRefreshed ) {
+            unset($_SESSION['entryStatus']);
+        } 
     }
-
-
 ?>

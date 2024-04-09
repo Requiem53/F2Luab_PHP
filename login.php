@@ -57,6 +57,7 @@
             if($row == 0){
                 //Condition when user does not exist
             }else if(password_verify($pword, $hashed_password)){
+                $_SESSION['entryStatus'] = 'log ' . $uname;
                 header("Location: homepage.php");
                 exit();
             }else{

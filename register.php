@@ -1,6 +1,52 @@
 <?php
     include 'connect.php';
     session_start();
+
+    if(isset($_POST['btnRegister'])){	
+        $uname=$_POST['regUserName'];
+        $fname=$_POST['regFirstName'];		
+        $lname=$_POST['regLastName'];
+        $gender=$_POST['regGender'];
+        $birthday=$_POST['regBirthday'];
+        $email=$_POST['regEmail'];		
+        $pword=$_POST['regPassword'];
+        
+        $sql2 ="Select * from tbluseraccount where username='".$uname."'";
+        $result = mysqli_query($connection,$sql2);
+        $row = mysqli_num_rows($result);
+
+        if($row == 0){
+            $hash_pass = password_hash($pword, PASSWORD_DEFAULT);
+            $sql ="Insert into tbluseraccount(emailadd,username,password) values('".$email."','".$uname."','".$hash_pass."')";
+            mysqli_query($connection,$sql);
+
+            $maybekey = mysqli_insert_id($connection);
+            
+            $sql1 ="Insert into tbluserprofile(firstname,lastname,gender,acctid, birthday) values('".$fname."','".$lname."','".$gender."', '".$maybekey."','".$birthday."')";
+            mysqli_query($connection,$sql1);
+
+            $_SESSION['entryStatus'] = 'reg ' . $uname;
+
+            header("Location: homepage.php");
+            exit();
+        }else{
+            echo "<script>
+                    $(\"#usernameExistsAlert\").fadeIn();
+
+                    function fadeDelay(){
+                        $(\"#usernameExistsAlert\").fadeOut(400);
+                    }
+
+                    const timeout = setTimeout(fadeDelay, 3000);
+
+                    $(\"#closeAlert\").click(function(){
+                        $(\"#usernameExistsAlert\").fadeOut(100);
+                    });
+                </script>";
+        }
+            
+        
+    }
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +56,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="css/register.css" rel="stylesheet">
+    <link href="./css/register.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <script src="js\jquery-3.7.1.js"></script>
@@ -82,64 +128,3 @@
     </form>
 </body>
 </html>
-
-<?php
-    	if(isset($_POST['btnRegister'])){	
-            $uname=$_POST['regUserName'];
-            $fname=$_POST['regFirstName'];		
-            $lname=$_POST['regLastName'];
-            $gender=$_POST['regGender'];
-            $birthday=$_POST['regBirthday'];
-            $email=$_POST['regEmail'];		
-            $pword=$_POST['regPassword'];
-            
-            $sql2 ="Select * from tbluseraccount where username='".$uname."'";
-            $result = mysqli_query($connection,$sql2);
-            $row = mysqli_num_rows($result);
-
-            if($row == 0){
-                header("Location: homepage.php");
-
-                $hash_pass = password_hash($pword, PASSWORD_DEFAULT);
-                $sql ="Insert into tbluseraccount(emailadd,username,password) values('".$email."','".$uname."','".$hash_pass."')";
-                mysqli_query($connection,$sql);
-
-                $maybekey = mysqli_insert_id($connection);
-                
-                $sql1 ="Insert into tbluserprofile(firstname,lastname,gender,acctid, birthday) values('".$fname."','".$lname."','".$gender."', '".$maybekey."','".$birthday."')";
-                mysqli_query($connection,$sql1);
-
-                $_SESSION['entryStatus'] = 'fromRegister';
-                
-                echo "<script>
-                        $(\"#registerSuccessAlert\").fadeIn();
-
-                        function fadeDelay(){
-                            $(\"#registerSuccessAlert\").fadeOut(400);
-                        }
-
-                        const timeout = setTimeout(fadeDelay, 3000);
-
-                        $(\"#closeAlert2\").click(function(){
-                            $(\"#registerSuccessAlert\").fadeOut(100);
-                        });
-                    </script>";
-            }else{
-                echo "<script>
-                        $(\"#usernameExistsAlert\").fadeIn();
-
-                        function fadeDelay(){
-                            $(\"#usernameExistsAlert\").fadeOut(400);
-                        }
-
-                        const timeout = setTimeout(fadeDelay, 3000);
-
-                        $(\"#closeAlert\").click(function(){
-                            $(\"#usernameExistsAlert\").fadeOut(100);
-                        });
-                    </script>";
-            }
-                
-            
-        }
-?>
