@@ -48,7 +48,7 @@
         </div>
 
         <button type="submit" name="btnPublish" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">Publish</button>  
-        
+        <div class="text-white text-sm"><a href="homepage.php"><span class="underline">Go back to homepage</span></a></div>
     </div>
 </form>
     
