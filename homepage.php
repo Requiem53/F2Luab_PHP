@@ -31,6 +31,8 @@
 <?php
     if(isset($_SESSION['entryStatus'])){
         $entryInfo = explode(" ", $_SESSION['entryStatus']);
+        //CHANGE TO COOKIES LATER
+        $_SESSION['currentUser'] = $entryInfo[1];
 
         if($entryInfo[0] == "log"){
             echo "
