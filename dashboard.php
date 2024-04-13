@@ -43,6 +43,7 @@
     <div style='background-color:#ffff00'>
         <center><p style="color:white"><h5>List of Games Published</h5></p></center>
     </div>
+    <h2>Logged in as LabExercise12Kisteria</h2>
     <h2>Dashboard</h2>
     <table style="width:100%">
         <tr>
