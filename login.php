@@ -42,39 +42,40 @@
 </body>
 </html>
 
-
 <?php
-    	if(isset($_POST['btnLogin'])){	
-            $uname=$_POST['logUserName'];
-            $pword=$_POST['logPassword'];
-            
-            $usernames ="Select * from tbluseraccount where username='".$uname."'";
-            $result = mysqli_query($connection,$usernames);
-            $row = mysqli_num_rows($result);
-            $user_data = mysqli_fetch_array($result);
-            $hashed_password = $user_data[3];
+    if(isset($_POST['btnLogin'])){	
+        $uname=$_POST['logUserName'];
+        $pword=$_POST['logPassword'];
+        
+        $usernames ="Select * from tbluseraccount where username='".$uname."'";
+        $result = mysqli_query($connection,$usernames);
+        $row = mysqli_num_rows($result);
+        $user_data = mysqli_fetch_array($result);
+        //3 - password column
+        $hashed_password = $user_data[3];
 
-            if($row == 0){
-                //Condition when user does not exist
-            }else if(password_verify($pword, $hashed_password)){
-                $_SESSION['entryStatus'] = 'log ' . $uname;
-                header("Location: homepage.php");
-                exit();
-            }else{
-                //fix wrong pass later
-                echo "<script>
-                    $(\"#incorrectPassAlert\").fadeIn();
+        if($row == 0){
+            //Condition when user does not exist
+        }else if(password_verify($pword, $hashed_password)){
+            $_SESSION['entryStatus'] = 'log ' . $uname;
+            $_SESSION['hasNotifiedUser'] = false;
+            header("Location: homepage.php");
+            exit();
+        }else{
+            //fix wrong pass later
+            echo "<script>
+                $(\"#incorrectPassAlert\").fadeIn();
 
-                    function fadeDelay(){
-                        $(\"#incorrectPassAlert\").fadeOut(400);
-                    }
+                function fadeDelay(){
+                    $(\"#incorrectPassAlert\").fadeOut(400);
+                }
 
-                    const timeout = setTimeout(fadeDelay, 3000);
+                const timeout = setTimeout(fadeDelay, 3000);
 
-                    $(\"#closeAlert\").click(function(){
-                        $(\"#incorrectPassAlert\").fadeOut(100);
-                    });
-                </script>";
-            }
+                $(\"#closeAlert\").click(function(){
+                    $(\"#incorrectPassAlert\").fadeOut(100);
+                });
+            </script>";
         }
+    }
 ?>

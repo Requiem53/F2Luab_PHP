@@ -1,7 +1,14 @@
 <?php
-    include_once('connect.php');
+    include_once('../connect.php');
+    include_once('getUserData.php');
+
     header("Access-Control-Allow-Origin: *");
     header('Content-Type: application/json');
+
+    $response = array(
+        'success' => false,
+        'message' => "EVERYTHING IS BROKEN"
+    );
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
@@ -11,17 +18,16 @@
     $currentUser = $_POST['currentUser'];
 
     try{
-        //ONLY SERVES TO GET USER CODE
-        $sql1 = "SELECT * FROM  tbluseraccount WHERE username='".$currentUser."'" ;
-        $result = mysqli_query($connection, $sql1);
-        $user_data = mysqli_fetch_array($result);
+        $user_data = getUserDataFromUsername($currentUser);
         $userCode = $user_data[0];
 
+        //Checks to see if existing transaction exists
         $sql2 = "SELECT * FROM tblgamesbought WHERE userID='".$userCode."' AND gameBought='".$gameCode."'";
         $result2 = mysqli_query($connection, $sql2);
         $rows = mysqli_num_rows($result2);
 
         if($rows == 0){
+            //If it exists, game is already bought by user
             $sql = "INSERT into tblgamesbought(userID, gameBought) values('".$userCode."','".$gameCode."')";
             mysqli_query($connection, $sql);
             $response = array(
@@ -30,6 +36,7 @@
                 'transactionStatus' => "bought"
             ); 
         }else{
+            //Buys game
             $response = array(
                 'success' => true,
                 'message' => "GAME CODE: {$gameCode} \n USER CODE: {$userCode}",

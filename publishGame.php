@@ -1,6 +1,11 @@
-
 <?php
-    include 'connect.php';    
+    include 'connect.php';
+    session_start();
+
+    //If not logged in, go back to index
+    if(!isset($_SESSION['entryStatus'])){
+        header("Location: index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -58,39 +63,15 @@
 
 
 <?php
-    	if(isset($_POST['btnPublish'])){	
-            echo 'Test';	
-            $nameofgame=$_POST['nameofgame'];		
-            $description=$_POST['description'];
-            $price=$_POST['price'];
-            $developer=$_POST['developer'];		
-            $publisher=$_POST['publisher'];
-            
-            $sql1 ="Insert into tblpublishgame(nameofgame,description,price,developer,publisher) values('".$nameofgame."','".$description."','".$price."','".$developer."','".$publisher."')";
-           mysqli_query($connection,$sql1);
-
-           
-            // $row = mysqli_num_rows($result);
-            // if($row == 0){
-            //     $hash_pass = password_hash($pword, PASSWORD_DEFAULT);
-            //     $sql ="Insert into tbluseraccount(emailadd,username,password) values('".$email."','".$uname."','".$hash_pass."')";
-            //     mysqli_query($connection,$sql);
-            //     mysqli_query($connection,$sql1);
-            //     echo "<script>
-            //             $(\"#registerSuccessAlert\").fadeIn();
-            //             $(\"#closeAlert\").click(function(){
-            //                 $(\"#registerSuccessAlert\").fadeOut(100);
-            //             });
-            //         </script>";
-            // }else{
-            //     echo "<script>
-            //             $(\"#usernameExistsAlert\").fadeIn();
-            //             $(\"#closeAlert\").click(function(){
-            //                 $(\"#usernameExistsAlert\").fadeOut(100);
-            //             });
-            //         </script>";
-            // }
-                
-            
-        }
+    if(isset($_POST['btnPublish'])){	
+        echo 'Test';	
+        $nameofgame=$_POST['nameofgame'];		
+        $description=$_POST['description'];
+        $price=$_POST['price'];
+        $developer=$_POST['developer'];		
+        $publisher=$_POST['publisher'];
+        
+        $sql1 ="Insert into tblpublishgame(nameofgame,description,price,developer,publisher) values('".$nameofgame."','".$description."','".$price."','".$developer."','".$publisher."')";
+        mysqli_query($connection,$sql1);     
+    }
 ?>

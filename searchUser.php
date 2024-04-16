@@ -1,5 +1,10 @@
 <?php
     include 'connect.php';
+    session_start();
+
+    if(!isset($_SESSION['entryStatus'])){
+        header("Location: index.php");
+    }
 ?>
 
 <!DOCTYPE html>

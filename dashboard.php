@@ -1,12 +1,15 @@
 <?php
     include 'connect.php';
-    $title = 'Dashboard';
     session_start();
+
+    //If not logged in, go back to index
+    if(!isset($_SESSION['entryStatus'])){
+        header("Location: index.php");
+    }
 ?>
 
 <?php
-    $mysqli = new mysqli('localhost', 'root','', 'dbluabf2') or die (mysqli_error($mysqli));
-    $resultset = $mysqli->query("SELECT * from tblpublishgame") or die ($mysqli->error);
+    $resultset = $connection->query("SELECT * from tblpublishgame");
 
     if(isset($_SESSION['currentUser'])){
         $currentUser = $_SESSION['currentUser'];
@@ -43,7 +46,8 @@
     <div style='background-color:#ffff00'>
         <center><p style="color:white"><h5>List of Games Published</h5></p></center>
     </div>
-    <h2>Logged in as LabExercise12Kisteria</h2>
+    
+    <h2>Logged in as <?php echo $currentUser?></h2>
     <h2>Dashboard</h2>
     <table style="width:100%">
         <tr>
@@ -68,7 +72,9 @@
     </table>
     <a href="homepage.php"><span class="underline">Go back to homepage</span></a>
 </body>
+
 <script>
+    //Alert handling
     $(document).ready(function(){
         $("#closeAlert2").click(function(){
             $("#gameBoughtAlert").fadeOut(100);
@@ -78,8 +84,7 @@
         });
     });
     function buyGame(code, user){
-        //PLS CHANGE TO COOKIE LATER AND CHANGE TO USER CODE
-        $.post("buyGameBackend.php", 
+        $.post("api/buyGameBackend.php", 
             {
                 gameCode: code,
                 currentUser: user
@@ -90,23 +95,21 @@
                 console.log("Data: " + JSON.stringify(data) + "\nStatus: " + JSON.stringify(status));
                 if(data.transactionStatus == "bought"){
                     $("#gameBoughtAlert").fadeIn();
-
-                    function fadeDelay(){
-                        $("#gameBoughtAlert").fadeOut(400);
-                    }
-
                     const timeout = setTimeout(fadeDelay, 3000);
                 }else{
                     $("#gameAlreadyBoughtAlert").fadeIn();
-
-                    function fadeDelay2(){
-                        $("#gameAlreadyBoughtAlert").fadeOut(400);
-                    }
-
                     const timeout2 = setTimeout(fadeDelay2, 3000);          
                 }
             }
         );
+
+        function fadeDelay(){
+            $("#gameBoughtAlert").fadeOut(400);
+        }
+
+        function fadeDelay2(){
+            $("#gameAlreadyBoughtAlert").fadeOut(400);
+        }
     }
 </script>
 </html>

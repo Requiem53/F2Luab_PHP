@@ -2,6 +2,8 @@
     include 'connect.php';
     session_start();
 
+    //on top of html to prevent errors
+
     if(isset($_POST['btnRegister'])){	
         $uname=$_POST['regUserName'];
         $fname=$_POST['regFirstName'];		
@@ -16,6 +18,7 @@
         $row = mysqli_num_rows($result);
 
         if($row == 0){
+            //If username not yet in use
             $hash_pass = password_hash($pword, PASSWORD_DEFAULT);
             $sql ="Insert into tbluseraccount(emailadd,username,password) values('".$email."','".$uname."','".$hash_pass."')";
             mysqli_query($connection,$sql);
@@ -26,6 +29,7 @@
             mysqli_query($connection,$sql1);
 
             $_SESSION['entryStatus'] = 'reg ' . $uname;
+            $_SESSION['hasNotifiedUser'] = false;
 
             header("Location: homepage.php");
             exit();

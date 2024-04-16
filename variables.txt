@@ -1,0 +1,20 @@
+APIs:
+
+getUserData.php:
+
+function getUserDataFromUsername($username) -
+returns row of user in database from username
+
+Session Variables:
+
+$_SESSION['entryStatus']:
+- used to identify if user logged in or registered to enter homepage
+- format: "log " + username or "reg " + username
+
+$_SESSION['hasNotifiedUser']:
+- used to handle alert box if user has been notified if they have logged in
+- true: already notified user
+- false: has not notified user
+
+$_SESSION['currentUser']:
+- current logged in user

@@ -1,12 +1,14 @@
 <?php
     include 'connect.php';
-    $title = 'Dashboard';
     session_start();
+
+    //If not logged in, go back to index
+    if(!isset($_SESSION['entryStatus'])){
+        header("Location: index.php");
+    }
 ?>
 
 <?php
-    $mysqli = new mysqli('localhost', 'root','', 'dbluabf2') or die (mysqli_error($mysqli));
-
     if(isset($_SESSION['currentUser'])){
         $currentUser = $_SESSION['currentUser'];
     }
@@ -16,8 +18,7 @@
     $user_data = mysqli_fetch_array($result);
     $userCode = $user_data[0];
     
-    $resultTransaction = $mysqli->query("SELECT * from tblgamesbought WHERE userID = '".$userCode."'") or die ($mysqli->error);
-    //$resultset = $mysqli->query("SELECT * from tblpublishgame") or die ($mysqli->error);
+    $resultTransaction = $connection->query("SELECT * from tblgamesbought WHERE userID = '".$userCode."'");
 ?>
 
 <!DOCTYPE html>

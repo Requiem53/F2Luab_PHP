@@ -1,6 +1,11 @@
 <?php
     include 'connect.php';
     session_start();
+
+    //If not logged in, go back to index
+    if(!isset($_SESSION['entryStatus'])){
+        header("Location: index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +34,15 @@
 </html>
 
 <?php
-    if(isset($_SESSION['entryStatus'])){
-        $entryInfo = explode(" ", $_SESSION['entryStatus']);
-        //CHANGE TO COOKIES LATER
-        $_SESSION['currentUser'] = $entryInfo[1];
+    // $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
+    
+    //separate entrystatus string to array
+    //0 - entry point
+    ///1 - username
+    $entryInfo = explode(" ", $_SESSION['entryStatus']);
+    $_SESSION['currentUser'] = $entryInfo[1];
 
+    if(!$_SESSION['hasNotifiedUser']){
         if($entryInfo[0] == "log"){
             echo "
                 <div id=\"loginAlert\" class=\"p-5 bg-green-500 text-base text-white fixed top-4\">
@@ -67,11 +76,6 @@
             });
             </script>";
         }
-
-        $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
-    
-        if($pageWasRefreshed ) {
-            unset($_SESSION['entryStatus']);
-        } 
+        $_SESSION['hasNotifiedUser'] = true;
     }
 ?>
