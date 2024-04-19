@@ -1,6 +1,4 @@
 <?php
-    include_once('../connect.php');
-
     header("Access-Control-Allow-Origin: *");
     header('Content-Type: application/json');
 
@@ -22,5 +20,4 @@
         return $user_data;
     }
 
-?>
 

@@ -27,20 +27,18 @@
         $rows = mysqli_num_rows($result2);
 
         if($rows == 0){
-            //If it exists, game is already bought by user
-            $sql = "INSERT into tblgamesbought(userID, gameBought) values('".$userCode."','".$gameCode."')";
+            $response = array(
+                'success' => false,
+                'message' => "GAME CODE: {$gameCode} \n USER CODE: {$userCode}",
+                'refundStatus' => "wtf how did you refund"
+            ); 
+        }else{
+            $sql = "DELETE FROM tblgamesbought WHERE userID='".$userCode."' AND gameBought='".$gameCode."'";
             mysqli_query($connection, $sql);
             $response = array(
                 'success' => true,
                 'message' => "GAME CODE: {$gameCode} \n USER CODE: {$userCode}",
-                'transactionStatus' => "bought"
-            ); 
-        }else{
-            //Buys game
-            $response = array(
-                'success' => true,
-                'message' => "GAME CODE: {$gameCode} \n USER CODE: {$userCode}",
-                'transactionStatus' => "alreadyBought"
+                'refundStatus' => "refunded"
             );
         }
     }catch(Error $e){

@@ -1,5 +1,5 @@
 <?php
-    include 'connect.php';
+    include_once('connect.php');
     session_start();
 
     //If not logged in, go back to index

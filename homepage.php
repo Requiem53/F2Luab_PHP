@@ -23,7 +23,7 @@
 <body class="bg-registerPageBackground flex flex-col justify-center items-center my-48 transition-opacity">
     <button onclick="location.href ='searchUser.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
     Search Users</button>
-    <button onclick="location.href ='publishGame.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
+    <button onclick="location.href ='gamesOwned.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
     See Games Owned</button>
     <button onclick="location.href ='dashboard.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
     Game Store</button>
