@@ -1,21 +1,15 @@
 <?php
     include_once 'connect.php';
     // include_once 'api/getUserData.php';
-    session_start();
 
-    //If not logged in, go back to index
-    if(!isset($_SESSION['entryStatus'])){
+    if(!isset($_SESSION['currentUser'])){
         header("Location: index.php");
+    }else{
+        $currentUser = $_SESSION['currentUser'];
     }
 ?>
 
 <?php
-    if(isset($_SESSION['currentUser'])){
-        $currentUser = $_SESSION['currentUser'];
-    }else{
-        $entryInfo = explode(" ", $_SESSION['entryStatus']);
-        $_SESSION['currentUser'] = $entryInfo[1];
-    }
     $sql1 = "SELECT * FROM  tbluseraccount WHERE username='".$currentUser."'" ;
     $result = mysqli_query($connection, $sql1);
     $user_data = mysqli_fetch_array($result);
@@ -28,14 +22,17 @@
     while($rower = $resultTransaction->fetch_assoc()){
         $gameIDs[] = $rower['gameBought'];
     }
-    
-    $queryGameIDs = implode(',', $gameIDs);
-    
-    $getAllGames = $connection->query("SELECT * from tblpublishgame WHERE gameID IN ($queryGameIDs)");
+    if(count($gameIDs) > 0){
+        $queryGameIDs = implode(',', $gameIDs);
+        $getAllGames = $connection->query("SELECT * from tblpublishgame WHERE gameID IN ($queryGameIDs)");
+        $numOfGames = mysqli_num_rows($getAllGames);
+    }else{
+        $numOfGames = 0;
+    }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,6 +47,7 @@
     <button type="submit" name="btnChangeUsername">CHANGE</button>
 </form>
     <table style="width:100%">
+        <?php if($numOfGames > 0) {?>
         <tr>
             <th>Name of Game</th>
             <th>Description</th>
@@ -57,6 +55,7 @@
             <th>Developer</th>
             <th>Publisher</th>
         </tr>
+        
         <?php while ($row = $getAllGames->fetch_assoc()): ?>
             <tr>
                 <th><?php echo $row['gameID'] ?></th>
@@ -67,7 +66,7 @@
                 <th><?php echo $row['publisher'] ?></th>
                 <th><button onclick="refundGame(<?php echo $row['gameID']?>, <?php echo "'" . $currentUser . "'"; ?>)">Refund Game</button></th>
             </tr>
-        <?php endwhile; ?>
+        <?php endwhile; }?>
     </table>
     <a href="homepage.php"><span class="underline">Go back to homepage</span></a>
 </body>

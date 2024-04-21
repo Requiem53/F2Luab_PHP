@@ -1,14 +1,14 @@
 <?php
     include 'connect.php';
-    session_start();
-
     //If not logged in, go back to index
-    if(!isset($_SESSION['entryStatus'])){
+    if(!isset($_SESSION['currentUser'])){
         header("Location: index.php");
+    }else{
+        $currentUser = $_SESSION['currentUser'];
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,20 +34,14 @@
 </html>
 
 <?php
-    // $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
-    
-    //separate entrystatus string to array
-    //0 - entry point
-    ///1 - username
-    $entryInfo = explode(" ", $_SESSION['entryStatus']);
-    $_SESSION['currentUser'] = $entryInfo[1];
+    $entryInfo = $_SESSION['entryStatus'];
 
     if(!$_SESSION['hasNotifiedUser']){
-        if($entryInfo[0] == "log"){
+        if($entryInfo == "log"){
             echo "
                 <div id=\"loginAlert\" class=\"p-5 bg-green-500 text-base text-white fixed top-4\">
                     <span id=\"closeAlert\" class=\"ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black\">&times;</span> 
-                    <strong>Successfully logged in as {$entryInfo[1]}!</strong> Feel free to browse around.
+                    <strong>Successfully logged in as {$currentUser}!</strong> Feel free to browse around.
                 </div>
             
                 <script> 
@@ -59,11 +53,11 @@
                 $(\"#loginAlert\").fadeOut(100);
                 });
                 </script>";
-        }else if($entryInfo[0] == "reg"){
+        }else if($entryInfo == "reg"){
             echo "
             <div id=\"loginAlert\" class=\"p-5 bg-green-500 text-base text-white fixed top-4\">
                 <span id=\"closeAlert\" class=\"ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black\">&times;</span> 
-                <strong>Successfully registered as {$entryInfo[1]}!</strong> Feel free to browse around.
+                <strong>Successfully registered as {$currentUser}!</strong> Feel free to browse around.
             </div>
         
             <script> 

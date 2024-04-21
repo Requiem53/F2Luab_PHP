@@ -1,23 +1,20 @@
 <?php
     include_once('connect.php');
-    session_start();
 
-    //If not logged in, go back to index
-    if(!isset($_SESSION['entryStatus'])){
+    if(!isset($_SESSION['currentUser'])){
         header("Location: index.php");
+    }else{
+        $currentUser = $_SESSION['currentUser'];
     }
 ?>
 
 <?php
     $resultset = $connection->query("SELECT * from tblpublishgame");
-
-    if(isset($_SESSION['currentUser'])){
-        $currentUser = $_SESSION['currentUser'];
-    }
+    $numOfPublishedGames = mysqli_num_rows($resultset);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,6 +47,7 @@
     <h2>Logged in as <?php echo $currentUser?></h2>
     <h2>Dashboard</h2>
     <table style="width:100%">
+        <?php if($numOfPublishedGames > 0){?>
         <tr>
             <th>Seq Number</th>
             <th>Name of Game</th>
@@ -68,7 +66,7 @@
                 <th><?php echo $row['publisher'] ?></th>
                 <th><button onclick="buyGame(<?php echo $row['gameID']?>, <?php echo "'" . $currentUser . "'"; ?>)">Buy Game</button></th>
             </tr>
-        <?php endwhile; ?>
+        <?php endwhile; }?>
     </table>
     <a href="homepage.php"><span class="underline">Go back to homepage</span></a>
 </body>

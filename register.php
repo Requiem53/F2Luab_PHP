@@ -1,7 +1,5 @@
 <?php
     include 'connect.php';
-    session_start();
-
     //on top of html to prevent errors
 
     if(isset($_POST['btnRegister'])){	
@@ -28,8 +26,10 @@
             $sql1 ="Insert into tbluserprofile(firstname,lastname,gender,acctid, birthday) values('".$fname."','".$lname."','".$gender."', '".$maybekey."','".$birthday."')";
             mysqli_query($connection,$sql1);
 
-            $_SESSION['entryStatus'] = 'reg ' . $uname;
+            $_SESSION['entryStatus'] = 'reg';
             $_SESSION['hasNotifiedUser'] = false;
+            $_SESSION['currentUser'] = $uname;
+            
 
             header("Location: homepage.php");
             exit();
@@ -54,7 +54,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -1,10 +1,9 @@
 <?php
     include 'connect.php';
-    session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,8 +56,9 @@
         if($row == 0){
             //Condition when user does not exist
         }else if(password_verify($pword, $hashed_password)){
-            $_SESSION['entryStatus'] = 'log ' . $uname;
+            $_SESSION['entryStatus'] = 'reg';
             $_SESSION['hasNotifiedUser'] = false;
+            $_SESSION['currentUser'] = $uname;
             header("Location: homepage.php");
             exit();
         }else{
