@@ -1,5 +1,9 @@
 <?php
     include 'connect.php';
+
+    if(isset($_SESSION['currentUser'])){
+        header("Location: homepage.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +40,11 @@
                 <span id="closeAlert" class="ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black">&times;</span> 
                 <strong>Incorrect password!</strong> Please try again.
             </div>
+
+            <div id="userNotExistsAlert" class="p-5 bg-red-500 text-base text-white fixed top-4 hidden">
+                <span id="closeAlert2" class="ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black">&times;</span> 
+                <strong>User does not exist!</strong> Please try registering.
+            </div>
         </div>
     </form>
 </body>
@@ -49,33 +58,49 @@
         $usernames ="Select * from tbluseraccount where username='".$uname."'";
         $result = mysqli_query($connection,$usernames);
         $row = mysqli_num_rows($result);
-        $user_data = mysqli_fetch_array($result);
-        //3 - password column
-        $hashed_password = $user_data[3];
+        
 
         if($row == 0){
             //Condition when user does not exist
-        }else if(password_verify($pword, $hashed_password)){
-            $_SESSION['entryStatus'] = 'reg';
-            $_SESSION['hasNotifiedUser'] = false;
-            $_SESSION['currentUser'] = $uname;
-            header("Location: homepage.php");
-            exit();
-        }else{
-            //fix wrong pass later
             echo "<script>
-                $(\"#incorrectPassAlert\").fadeIn();
+                $(\"#userNotExistsAlert\").fadeIn();
 
                 function fadeDelay(){
-                    $(\"#incorrectPassAlert\").fadeOut(400);
+                    $(\"#userNotExistsAlert\").fadeOut(400);
                 }
 
                 const timeout = setTimeout(fadeDelay, 3000);
 
-                $(\"#closeAlert\").click(function(){
-                    $(\"#incorrectPassAlert\").fadeOut(100);
+                $(\"#closeAlert2\").click(function(){
+                    $(\"#userNotExistsAlert\").fadeOut(100);
                 });
             </script>";
+        }else{
+            $user_data = mysqli_fetch_array($result);
+            $hashed_password = $user_data[3];
+            if(password_verify($pword, $hashed_password)){
+                $_SESSION['entryStatus'] = 'reg';
+                $_SESSION['hasNotifiedUser'] = false;
+                $_SESSION['currentUser'] = $uname;
+                header("Location: homepage.php");
+
+                exit();
+            }else{
+                //fix wrong pass later
+                echo "<script>
+                    $(\"#incorrectPassAlert\").fadeIn();
+    
+                    function fadeDelay(){
+                        $(\"#incorrectPassAlert\").fadeOut(400);
+                    }
+    
+                    const timeout = setTimeout(fadeDelay, 3000);
+    
+                    $(\"#closeAlert\").click(function(){
+                        $(\"#incorrectPassAlert\").fadeOut(100);
+                    });
+                </script>";
+            }
         }
     }
 ?>

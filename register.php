@@ -1,5 +1,9 @@
 <?php
     include 'connect.php';
+
+    if(isset($_SESSION['currentUser'])){
+        header("Location: homepage.php");
+    }
     //on top of html to prevent errors
 
     if(isset($_POST['btnRegister'])){	
@@ -48,8 +52,6 @@
                     });
                 </script>";
         }
-            
-        
     }
 ?>
 

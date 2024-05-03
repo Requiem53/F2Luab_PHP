@@ -14,15 +14,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/searchUser.css" rel="stylesheet">
+    <script src="js\jquery-3.7.1.js"></script>
     <title>Document</title>
 </head>
 <body class="bg-black">
     <form method="post" class="text-white">
         <p>Search a user</p>
-        <input type="text" name="searchUser" class="text-black">
+        <input type="text" name="searchUser" class="text-black" onkeyup="showResult(this.value)">
         <button type="submit" name="btnSearch">Search</button>
     </form>
 </body>
+<script>
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("demo").innerHTML = xhttp.responseText;
+        }
+    };
+    xhttp.open("GET", "filename", true);
+    xhttp.send();
+</script>
 </html>
 
 <?php
