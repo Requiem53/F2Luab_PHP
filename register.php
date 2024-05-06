@@ -69,7 +69,7 @@
     <title>Register</title>
 </head>
 <body class="bg-registerPageBackground"> 
-    <form method="post" class="font-poppins text-2xl flex flex-col items-center justify-center gap-5 my-6 mx-auto w-3/12 p-14 bg-indigo-950 bg-opacity-75">
+    <form method="post" class="font-poppins text-2xl flex flex-col items-center justify-center gap-5 my-6 mx-auto min-w-[28rem] w-[28rem] p-14 bg-indigo-950 bg-opacity-75">
         <div class="mb-10 text-4xl text-white font-bold">Create your account</div>
             <div class="relative z-0 w-full">
                 <label for="regUserName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

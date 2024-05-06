@@ -20,7 +20,7 @@
     <title>Login</title>
 </head>
 <body class="bg-registerPageBackground"> 
-    <form method="post" class="font-poppins text-2xl flex flex-col items-center justify-center my-10 gap-7 mx-auto w-3/12 p-14 bg-neutral-50 bg-opacity-15">   
+    <form method="post" class="font-poppins text-2xl flex flex-col items-center justify-center my-10 gap-7 mx-auto min-w-[28rem] w-[28rem] p-14 bg-neutral-50 bg-opacity-15">   
         <div class="mb-10 text-4xl text-white font-bold">Login to your account</div>
             <div class="relative z-0 w-full">
                 <input type="text" name="logUserName" class="block py-2.5 px-0 w-full text-xl text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
