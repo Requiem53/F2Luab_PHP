@@ -9,6 +9,7 @@
 ?>
 
 <?php
+    //TABLE
     $allFemaleUsers = $connection->query("SELECT tbluseraccount.acctid, tbluseraccount.username, tbluserprofile.firstname, 
     tbluserprofile.lastname, tbluserprofile.gender FROM tbluseraccount INNER JOIN tbluserprofile 
     ON tbluseraccount.acctid=tbluserprofile.acctid WHERE tbluserprofile.gender=\"Female\"");
@@ -20,6 +21,12 @@
     $salesPerGame = $connection->query("SELECT tblpublishgame.nameofgame, Count(tblgamesbought.gameBought) as Sales FROM tblgamesbought 
     RIGHT JOIN tblpublishgame ON tblpublishgame.gameid=tblgamesbought.gameBought
     GROUP BY tblgamesbought.gameBought ORDER BY Sales DESC");
+
+    //STATISTICS
+    $totalUsers = $connection->query("SELECT COUNT(acctid) FROM tbluseraccount");
+    $totalGames = $connection->query("SELECT COUNT(gameID) FROM tblpublishgame");
+    $averageGamePrice = $connection->query("SELECT AVG(price) FROM tblpublishgame");
+
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +48,7 @@
 <body>
     <h2>Logged in as <?php echo $currentUser?></h2>
     <h2>Admin Panel</h2>
+    <h1 style="font-weight: bold;">TABLE</h1>
 
     <div style='background-color:#ffff00'>
         <center><p style="color:white"><h5>List of All Female Users</h5></p></center>
@@ -109,7 +117,11 @@
             </tr>
         <?php endwhile; }?>
     </table>
+
+    <h1 style="font-weight: bold;">STATISTICS</h1>
+    <h2><span style="font-weight: bold;">Total number of users: </span> <?php echo $totalUsers->fetch_column()?></h2>
+    <h2><span style="font-weight: bold;">Total number of games: </span> <?php echo $totalGames->fetch_column()?></h2>
+    <h2><span style="font-weight: bold;">Average price of games: </span> <?php echo $averageGamePrice->fetch_column()?></h2>
     <a href="homepage.php"><span class="underline">Go back to homepage</span></a>
 </body>
 </html>
-
