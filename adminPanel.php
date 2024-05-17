@@ -22,6 +22,14 @@
     RIGHT JOIN tblpublishgame ON tblpublishgame.gameid=tblgamesbought.gameBought
     GROUP BY tblgamesbought.gameBought ORDER BY Sales DESC");
 
+    $maleUsers = $connection->query("SELECT Count(gender) FROM tbluserprofile WHERE gender=\"Male\"");
+    $femaleUsers = $connection->query("SELECT Count(gender) FROM tbluserprofile WHERE gender=\"Female\"");
+    $otherUsers = $connection->query("SELECT Count(gender) FROM tbluserprofile WHERE gender=\"Other\"");
+    $pfntsUsers = $connection->query("SELECT Count(gender) FROM tbluserprofile WHERE gender=\"Prefer not to say \"");
+    $bestSellingGame = $connection->query("SELECT tblpublishgame.nameofgame, Count(tblgamesbought.gameBought) AS Sales FROM tblgamesbought 
+    RIGHT JOIN tblpublishgame ON tblpublishgame.gameid=tblgamesbought.gameBought
+    GROUP BY tblgamesbought.gameBought ORDER BY Sales DESC LIMIT 1");
+
     //STATISTICS
     $totalUsers = $connection->query("SELECT COUNT(acctid) FROM tbluseraccount");
     $totalGames = $connection->query("SELECT COUNT(gameID) FROM tblpublishgame");
@@ -119,9 +127,15 @@
     </table>
 
     <h1 style="font-weight: bold;">STATISTICS</h1>
-    <h2><span style="font-weight: bold;">Total number of users: </span> <?php echo $totalUsers->fetch_column()?></h2>
-    <h2><span style="font-weight: bold;">Total number of games: </span> <?php echo $totalGames->fetch_column()?></h2>
-    <h2><span style="font-weight: bold;">Average price of games: </span> <?php echo $averageGamePrice->fetch_column()?></h2>
+    <h2>1. <span style="font-weight: bold;">Total number of users: </span> <?php echo $totalUsers->fetch_column()?></h2>
+    <h2>2. <span style="font-weight: bold;">Total number of games: </span> <?php echo $totalGames->fetch_column()?></h2>
+    <h2>3. <span style="font-weight: bold;">Average price of games: </span> <?php echo $averageGamePrice->fetch_column()?></h2>
+    <h2>4. <span style="font-weight: bold;">Total number of male users: </span> <?php echo $maleUsers->fetch_column()?></h2>
+    <h2><span style="font-weight: bold;">Total number of female users: </span> <?php echo $femaleUsers->fetch_column()?></h2>
+    <h2><span style="font-weight: bold;">Total number of other users: </span> <?php echo $otherUsers->fetch_column()?></h2>
+    <h2><span style="font-weight: bold;">Total number of unspecified users: </span> <?php echo $pfntsUsers->fetch_column()?></h2>
+    <h2>5. <span style="font-weight: bold;">Best Selling Game: </span> <?php echo $bestSellingGame->fetch_column()?></h2>
+
     <a href="homepage.php"><span class="underline">Go back to homepage</span></a>
 </body>
 </html>
