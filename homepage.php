@@ -31,6 +31,8 @@
     Publish Games (Developer)</button>
     <button onclick="location.href ='adminPanel.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
     Admin Panel</button>
+    <button onclick="location.href ='userProfile.php?userid=<?php echo $currentUser ?>'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
+    User Profile</button>
     <button onclick="location.href ='logout.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
     Logout</button>
     <img src="images\stockphoto1.jpg" class="w-1/3 h-1/3">

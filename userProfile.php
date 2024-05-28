@@ -1,3 +1,22 @@
+<?php
+    include 'connect.php';
+    //If not logged in, go back to index
+    if(!isset($_SESSION['currentUser'])){
+        header("Location: index.php");
+    }else{
+        $currentUser = $_SESSION['currentUser'];
+    }
+
+    if(!isset($_SERVER['currentUser'])){
+        header("Location: homepage.php");
+    }else{
+        $visitedUser = $_SERVER['userid'];
+    }
+
+    $resultSet = $connection->query("SELECT * FROM tbluserprofile WHERE userid=$visitedUser");
+    $resultSet2 = $connection->query("SELECT * FROM tbluseraccount WHERE acctid=$visitedUser");
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
@@ -14,8 +33,8 @@
         <div class="flex flex-row items-center h-full ml-12">
             <img src="images/profilePics/defaultImage.jpg" class="object-scale-down h-52 w-52" style="border-radius: 50%;">
             <div class="flex flex-col ml-24 gap-10 font-poppins text-gray-50">
-                <p class="text-6xl ">Requiem53</p>
-                <p class="text-xl">Dedededededescription</p>
+                <p class="text-6xl "><?php echo $resultSet2['username'] ?></p>
+                <p class="text-xl"><?php echo $resultSet1['description'] ?></p>
             </div>
         </div>
     </div>
