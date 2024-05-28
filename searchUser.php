@@ -10,7 +10,7 @@
 
 <?php
     //All usernames and pfps
-    $allUsersToDisplay = $connection->query("SELECT username, profilePic FROM tbluseraccount");
+    $allUsersToDisplay = $connection->query("SELECT username FROM tbluseraccount");
     $numOfUsers = mysqli_num_rows($allUsersToDisplay); 
 ?>
 

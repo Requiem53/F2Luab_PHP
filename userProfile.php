@@ -29,6 +29,8 @@
     <title>Document</title>
 </head>
 <body class="bg-[url('../images/backgroundPfps/defaultBackground.jpg')] bg-cover flex flex-col justify-center items-center my-6 mx-auto h-full min-w-[80rem] w-[80%] gap-10">
+
+
     <div class = "h-64 min-w-[60rem] bg-gray-200 shadow-2xl rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10" >
         <div class="flex flex-row items-center h-full ml-12">
             <img src="images/profilePics/defaultImage.jpg" class="object-scale-down h-52 w-52" style="border-radius: 50%;">
