@@ -27,15 +27,23 @@ if(isset($_POST['btnUpdate'])) {
     $publisher = $_POST['publisher'];
 
     // Update record in the database
-    $sql = "UPDATE tblpublishgame SET nameofgame='$nameofgame', description='$description', price='$price', developer='$developer', publisher='$publisher' WHERE gameid='$gameId'";
-    if (mysqli_query($connection, $sql)) {
-        echo "Record updated successfully";
-        // Redirect back to dashboard
-        header("Location: dashboard2.php");
-        exit();
+    $sql = "UPDATE tblpublishgame SET nameofgame=?, description=?, price=?, developer=?, publisher=? WHERE gameid=?";
+    $stmt = $connection->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param("ssdssi", $nameofgame, $description, $price, $developer, $publisher, $gameId);
+        if ($stmt->execute()) {
+            echo "Record updated successfully";
+            // Redirect back to dashboard
+            header("Location: manageGames.php");
+            exit();
+        } else {
+            echo "Error updating record: " . $stmt->error;
+        }
+        $stmt->close();
     } else {
-        echo "Error updating record: " . mysqli_error($connection);
+        echo "Error preparing statement: " . $connection->error;
     }
+    
 }
 
 // delete game function
@@ -44,7 +52,7 @@ function deleteGame($connection, $gameId) {
     if (mysqli_query($connection, $sql)) {
         echo "Record deleted successfully";
         // Redirect back to dashboard 
-        header("Location: dashboard2.php");
+        header("Location: manageGames.php");
         exit();
     } else {
         echo "Error deleting record: " . mysqli_error($connection);
