@@ -10,8 +10,8 @@
 
 <?php
     //All usernames and pfps
-    $allUsersToDisplay = $connection->query("SELECT username FROM tbluseraccount");
-    $numOfUsers = mysqli_num_rows($allUsersToDisplay); 
+    $allGames = $connection->query("SELECT * FROM tblpublishgame");
+    $numOfGames = mysqli_num_rows($allGames); 
 ?>
 
 <!DOCTYPE html>
@@ -19,11 +19,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/searchUser.css" rel="stylesheet">
+    <link href="css/searchGame.css" rel="stylesheet">
     <script src="js\jquery-3.7.1.js"></script>
-    <title>Search User</title>
+    <title>Search Games</title>
 </head>
-<body class="bg-[url('../images/backgroundFeatures/searchUserBG.jpg')] bg-auto">
+<body class="bg-[url('../images/publishBG.jpg')] bg-auto">
     <div id="userList" class="flex flex-col justify-center items-center my-12 gap-4">
         <div class="min-w-[60rem] mx-auto">
             <div class="w-full h-14 bg-gray-200 shadow-2xl rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10 relative flex items-center focus-within:shadow-lg overflow-hidden">
@@ -42,16 +42,16 @@
             </div>
         </div>
 
-        <?php if($numOfUsers > 0){ while ($row = $allUsersToDisplay->fetch_assoc()): ?>
-            <div userSection="<?php echo $row['username']?>" class = "min-h-[8rem] min-w-[60rem] w-[60rem] h-[8rem] mx-auto bg-gray-200 shadow-lg rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10">
+        <?php if($numOfGames > 0){ while ($row = $allGames->fetch_assoc()): ?>
+            <div userSection="<?php echo $row['nameofgame']?>" class = "min-h-[8rem] min-w-[60rem] w-[60rem] h-[8rem] mx-auto bg-gray-200 shadow-lg rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10">
                 <div class="flex flex-row items-center h-full ml-10 gap-6">
                     <div class="flex flex-row items-center h-full w-[55%] gap-6">
-                        <img src="images/profilePics/defaultImage.jpg" class="object-scale-down h-24 w-24" style="border-radius: 50%;">
-                        <p class="text-4xl text-white"><?php echo $row['username']?></p>
+                        <img src="gamePics/<?php echo $row['nameofgame']?>/titleImage.jpg" class="object-scale-down h-24 w-24">
+                        <p class="text-4xl text-white"><?php echo $row['nameofgame']?></p>
                     </div>
                     <div class="flex flex-row items-center justify-end h-full w-[38%] gap-6">
-                        <button class="min-w-[12rem] min-h-[3rem] w-[12rem] h-[3rem] px-5 text-2xl text-white bg-blue-500 hover:bg-blue-600 shadow-lg rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-25">
-                            View Profile</button>
+                        <button onclick="location.href ='gamePage.php?gameID=<?php echo $row['gameID'] ?>'" class="min-w-[12rem] min-h-[3rem] w-[12rem] h-[3rem] px-5 text-2xl text-white bg-blue-500 hover:bg-blue-600 shadow-lg rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-25">
+                            View Game</button>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,9 @@
 
         $(`div[userSection]`).each(function(){
             const userID = $(this).attr('userSection');
-            if(userID.includes(typedUser)){
+            const capsUserID = userID.toUpperCase();
+            const capsTypedUser = typedUser.toUpperCase();
+            if(capsUserID.includes(capsTypedUser)){
                 $(this).show();
             }else{
                 $(this).hide();
