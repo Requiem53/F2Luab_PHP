@@ -49,8 +49,19 @@
 
         <div class="relative z-0 w-full">
             <input type="text" name="publisher" id="floating_standard" class="block py-2.5 px-0 w-full text-xl text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-            <label for="floating_standard" class="w-full absolute text-lg text-gray-200 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Publisher</label>
+            <label for="floating_standard" class="w-full absolute text-lg text-gray-200 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
+                Publisher</label>
         </div>
+
+        <div class="relative z-0 w-full text-white text-base">
+            <h2 class="mb-2">Add Game Banner:</h2>
+            <input type="file" name="gameBanner" enctype="multipart/form-data" action="" required>
+
+            <h2 class="mb-2">Add Title Image:</h2>
+            <input type="file" name="titleImage" enctype="multipart/form-data" required>
+        </div>
+
+        
 
         <button type="submit" name="btnPublish" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">Publish</button>  
         <div class="text-white text-sm"><a href="homepage.php"><span class="underline">Go back to homepage</span></a></div>
