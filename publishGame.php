@@ -22,7 +22,7 @@
     <title>Document</title>
 </head>
 <body class="bg-[url('images/publishBG.jpg')]">
-<form method="post"> 
+<form action="publishGame.php" method="post"> 
 
     <div class="font-poppins text-2xl flex flex-col items-center justify-center my-8 gap-7 mx-auto w-3/12 p-14 bg-neutral-50 bg-opacity-15">
         <div class="mb-10 text-4xl text-white font-bold">Publish Game</div>
@@ -53,16 +53,6 @@
                 Publisher</label>
         </div>
 
-        <div class="relative z-0 w-full text-white text-base">
-            <h2 class="mb-2">Add Game Banner:</h2>
-            <input type="file" name="gameBanner" enctype="multipart/form-data" action="" required>
-
-            <h2 class="mb-2">Add Title Image:</h2>
-            <input type="file" name="titleImage" enctype="multipart/form-data" required>
-        </div>
-
-        
-
         <button type="submit" name="btnPublish" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">Publish</button>  
         <div class="text-white text-sm"><a href="homepage.php"><span class="underline">Go back to homepage</span></a></div>
     </div>
@@ -75,14 +65,13 @@
 
 <?php
     if(isset($_POST['btnPublish'])){	
-        echo 'Test';	
         $nameofgame=$_POST['nameofgame'];		
         $description=$_POST['description'];
         $price=$_POST['price'];
         $developer=$_POST['developer'];		
         $publisher=$_POST['publisher'];
-        
+
         $sql1 ="Insert into tblpublishgame(nameofgame,description,price,developer,publisher) values('".$nameofgame."','".$description."','".$price."','".$developer."','".$publisher."')";
-        mysqli_query($connection,$sql1);     
+        mysqli_query($connection,$sql1);
     }
 ?>

@@ -6,6 +6,10 @@
     }else{
         $currentUser = $_SESSION['currentUser'];
     }
+
+    $resultSet = $connection->query("SELECT usertype FROM tbluseraccount WHERE username = '$currentUser'");
+    $userTypeResult = $resultSet->fetch_assoc();
+    $userType = $userTypeResult['usertype'];
 ?>
 <!DOCTYPE html>
 <html lang="en" class="dark">
@@ -20,22 +24,32 @@
     <script src="js\jquery-3.7.1.js"></script>
     <title>Home Page</title>
 </head>
-<body class="bg-registerPageBackground flex flex-col justify-center items-center my-48 transition-opacity">
-    <button onclick="location.href ='searchUser.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
-    Search Users</button>
-    <button onclick="location.href ='gamesOwned.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
-    See Games Owned</button>
-    <button onclick="location.href ='dashboard.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
-    Game Store</button>
-    <button onclick="location.href ='publishGame.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
-    Publish Games (Developer)</button>
-    <button onclick="location.href ='adminPanel.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
-    Admin Panel</button>
-    <button onclick="location.href ='userProfile.php?username=<?php echo $currentUser ?>'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
-    User Profile</button>
-    <button onclick="location.href ='logout.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-full mt-7">
-    Logout</button>
-    <img src="images\stockphoto1.jpg" class="w-1/3 h-1/3">
+<body class="bg-registerPageBackground my-48 transition-opacity flex flex-col items-center justify-center w-full">
+    <div class="flex flex-col items-center justify-center w-full">
+        <button onclick="location.href ='searchUser.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-[42rem] mt-7">
+        Search Users</button>
+        <!-- <button onclick="location.href ='gamesOwned.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-[42rem] mt-7">
+        See Games Owned</button> -->
+        <button onclick="location.href ='gameStore.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-[42rem] mt-7">
+        Game Store</button>
+        
+        <?php if($userType == "Admin"){
+                echo "
+                <button onclick=\"location.href ='publishGame.php'\" class=\"bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-[42rem] mt-7\">
+                     Publish Games</button>
+                <button onclick=\"location.href ='adminPanel.php'\" class=\"bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-[42rem] mt-7\">
+                    Admin Panel</button>
+                ";
+            }
+        ?>
+        
+        <button onclick="location.href ='userProfile.php?username=<?php echo $currentUser ?>'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-[42rem] mt-7">
+        User Profile</button>
+        <button onclick="location.href ='logout.php'" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full w-[42rem] mt-7">
+        Logout</button>
+    </div>
+
+    <!-- <img src="images\stockphoto1.jpg" class="w-1/3 h-1/3"> -->
 </body>
 </html>
 

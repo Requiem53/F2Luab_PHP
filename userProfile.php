@@ -27,7 +27,11 @@
     $resultSet2 = $connection->query("SELECT * FROM tbluserprofile WHERE acctid=$userID");
     $userProfile = $resultSet2->fetch_assoc();
 
-    
+    //Games
+    $allGames = $connection->query("SELECT tblpublishgame.nameofgame, tblpublishgame.gameID as gameID FROM tblgamesbought
+    RIGHT JOIN tblpublishgame ON tblpublishgame.gameid=tblgamesbought.gameBought
+    WHERE tblgamesbought.userID = $userID");
+    $numOfGames = mysqli_num_rows($allGames); 
 ?>
 
 <!DOCTYPE html>
@@ -55,13 +59,31 @@
     </div>
 
     <div class="min-h-[35rem] h-fit flex flex-row min-w-[60rem] gap-4 items-start justify-start font-poppins text-white">
-        <div class = "min-h-[35rem] h-full min-w-[63.5%] p-4 gap-2 flex flex-col justify-start items-center bg-gray-200 shadow-2xl rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10">
-            <p class="text-xl">Games Owned</p>    
-            <div class = "min-h-[6rem] min-w-[98%] bg-gray-200 shadow-lg rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10"></div>
+        <div class = "min-h-[35rem] h-fit min-w-[63.5%] p-4 gap-2 flex flex-col justify-start items-center bg-gray-200 shadow-2xl rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10">
+            <p class="text-xl">Games Owned</p>  
+            <div class="flex flex-col justify-start items-start gap-4">
+                <?php if($numOfGames > 0){ while ($row = $allGames->fetch_assoc()): ?>
+                    <div userSection="<?php echo $row['nameofgame']?>" class = "min-h-[8rem] w-full h-[8rem] mx-auto bg-gray-200 shadow-lg rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10">
+                        <div class="flex flex-row items-center h-full ml-10 gap-6">
+                            <div class="flex flex-row items-center h-full w-[55%] gap-6">
+                                <img src="gamePics/<?php echo $row['nameofgame']?>/titleImage.jpg" class="object-scale-down h-24 w-24">
+                                <p class="text-2xl text-white"><?php echo $row['nameofgame']?></p>
+                            </div>
+                            <div class="flex flex-row items-center justify-end h-full w-[38%] gap-6">
+                                <button onclick="location.href ='gamePage.php?gameID=<?php echo $row['gameID'] ?>'" class="min-w-[12rem] min-h-[3rem] w-[12rem] h-[3rem] px-5 text-2xl text-white bg-blue-500 hover:bg-blue-600 shadow-lg rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-25">
+                                    View Game</button>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; }?>  
+            </div>
+            
+            <!-- <div class = "min-h-[6rem] min-w-[98%] bg-gray-200 shadow-lg rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10"></div> -->
         </div>
         <div class = "min-h-[35rem] h-full min-w-[35%] p-4 gap-2 flex flex-col justify-start items-center bg-gray-200 shadow-2xl rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10">
             <p class="text-xl">Actions</p>       
-            <div class = "min-h-[6rem] min-w-[98%] bg-gray-200 shadow-lg rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10"></div> 
+            <button onclick="location.href ='editUser.php?userID=<?php echo $userID?>'" class="min-h-[3rem] min-w-[24rem] h-[3rem] px-5 text-2xl text-white bg-blue-500 hover:bg-blue-600 shadow-lg rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-25">
+                Edit Profile</button>
         </div>
     </div>
 

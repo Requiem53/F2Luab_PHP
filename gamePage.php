@@ -1,11 +1,11 @@
 <?php
     include 'connect.php';
     //If not logged in, go back to index
-    if(!isset($_SESSION['currentUser'])){
-        header("Location: index.php");
-    }else{
+    // if(!isset($_SESSION['currentUser'])){
+    //     header("Location: index.php");
+    // }else{
         $currentUser = $_SESSION['currentUser'];
-    }
+    // }
 
     if(!isset($_GET['gameID'])){
         header("Location: gameStore.php");
@@ -29,6 +29,16 @@
 </head>
 <body class="bg-[url('../images/backgroundFeatures/searchUserBG.jpg')] bg-cover flex flex-col justify-center items-center my-6 mx-auto h-full min-w-[80%] w-[80%] gap-1">
   
+    <div id="gameAlreadyBoughtAlert" class="p-5 bg-red-500 text-base text-white fixed top-4 hidden">
+        <span id="closeAlert" class="ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black">&times;</span> 
+        <strong>You have already bought the game.</strong> Unable to purchase again.
+    </div>
+
+    <div id="gameBoughtAlert" class="p-5 bg-green-500 text-base text-white fixed top-4 hidden">
+        <span id="closeAlert2" class="ml-4 text-white font-bold float-right text-xl leading-5 cursor-pointer transition-colors hover:text-black">&times;</span> 
+        <strong>Game bought</strong> Transaction completed.
+    </div>
+    
     <div class="flex flex-col justify-center items-start">
         <div class="flex flex-row justify-center items-center">
             <button onclick="location.href ='gameStore.php'" class="flex items-center justify-center w-8 h-8 my-2 text-indigo-600 transition-colors duration-150 bg-gray-200 shadow-2xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10 rounded-xl focus:shadow-outline hover:bg-indigo-100">
@@ -52,12 +62,51 @@
                     <p class="text-2xl text-white">Buy <?php echo $game['nameofgame'] ?></p>
                 </div>
                 <div class="flex flex-row items-center justify-end h-full w-[38%] gap-6">
-                    <button class="min-w-[12rem] min-h-[3rem] w-[12rem] h-[3rem] px-5 text-2xl text-white bg-blue-500 hover:bg-blue-600 shadow-lg rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-25">
+                    <button onclick="buyGame(<?php echo $game['gameID']?>, <?php echo "'" . $currentUser . "'"; ?>)"
+                     class="min-w-[12rem] min-h-[3rem] w-[12rem] h-[3rem] px-5 text-2xl text-white bg-blue-500 hover:bg-blue-600 shadow-lg rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-25">
+                        
                         P<?php echo $game['price'] ?>.00</button>
             </div>
         </div>
     </div>
-    
-
 </body>
+    <script>
+        //Alert handling
+        $(document).ready(function(){
+            $("#closeAlert2").click(function(){
+                $("#gameBoughtAlert").fadeOut(100);
+            });
+            $("#closeAlert").click(function(){
+                $("#gameAlreadyBoughtAlert").fadeOut(100);
+            });
+        });
+        function buyGame(code, user){
+            $.post("api/buyGameBackend.php", 
+                {
+                    gameCode: code,
+                    currentUser: user
+                },
+                function(data,status){
+                    data = JSON.stringify(data);
+                    data = JSON.parse(data);
+                    console.log("Data: " + JSON.stringify(data) + "\nStatus: " + JSON.stringify(status));
+                    if(data.transactionStatus == "bought"){
+                        $("#gameBoughtAlert").fadeIn();
+                        const timeout = setTimeout(fadeDelay, 3000);
+                    }else{
+                        $("#gameAlreadyBoughtAlert").fadeIn();
+                        const timeout2 = setTimeout(fadeDelay2, 3000);          
+                    }
+                }
+            );
+
+            function fadeDelay(){
+                $("#gameBoughtAlert").fadeOut(400);
+            }
+
+            function fadeDelay2(){
+                $("#gameAlreadyBoughtAlert").fadeOut(400);
+            }
+        }
+    </script>
 </html>

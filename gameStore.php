@@ -1,11 +1,11 @@
 <?php
     include 'connect.php';
 
-    if(!isset($_SESSION['currentUser'])){
-        header("Location: index.php");
-    }else{
-        $currentUser = $_SESSION['currentUser'];
-    }
+    // if(!isset($_SESSION['currentUser'])){
+    //     header("Location: index.php");
+    // }else{
+    //     $currentUser = $_SESSION['currentUser'];
+    // }
 ?>
 
 <?php
@@ -24,6 +24,7 @@
     <title>Search Games</title>
 </head>
 <body class="bg-[url('../images/publishBG.jpg')] bg-auto">
+    <a href="homepage.php"><span class="underline text-white">Go back to homepage</span></a>
     <div id="userList" class="flex flex-col justify-center items-center my-12 gap-4">
         <div class="min-w-[60rem] mx-auto">
             <div class="w-full h-14 bg-gray-200 shadow-2xl rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10 relative flex items-center focus-within:shadow-lg overflow-hidden">
@@ -41,7 +42,6 @@
                 placeholder="Search a user.." /> 
             </div>
         </div>
-
         <?php if($numOfGames > 0){ while ($row = $allGames->fetch_assoc()): ?>
             <div userSection="<?php echo $row['nameofgame']?>" class = "min-h-[8rem] min-w-[60rem] w-[60rem] h-[8rem] mx-auto bg-gray-200 shadow-lg rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10">
                 <div class="flex flex-row items-center h-full ml-10 gap-6">

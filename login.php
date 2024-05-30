@@ -82,7 +82,7 @@
                 $_SESSION['entryStatus'] = 'reg';
                 $_SESSION['hasNotifiedUser'] = false;
                 $_SESSION['currentUser'] = $uname;
-                header("Location: homepage.php");
+                header("Location: defactohomepage.php");
 
                 exit();
             }else{

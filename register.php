@@ -35,7 +35,7 @@
             $_SESSION['currentUser'] = $uname;
             
 
-            header("Location: homepage.php");
+            header("Location: defactohomepage.php");
             exit();
         }else{
             echo "<script>

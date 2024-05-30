@@ -1,11 +1,11 @@
 <?php
     include 'connect.php';
 
-    if(!isset($_SESSION['currentUser'])){
-        header("Location: index.php");
-    }else{
-        $currentUser = $_SESSION['currentUser'];
-    }
+    // if(!isset($_SESSION['currentUser'])){
+    //     header("Location: index.php");
+    // }else{
+    //     $currentUser = $_SESSION['currentUser'];
+    // }
 ?>
 
 <?php
@@ -23,6 +23,7 @@
     <script src="js\jquery-3.7.1.js"></script>
     <title>Search User</title>
 </head>
+<a href="homepage.php"><span class="underline text-white">Go back to homepage</span></a>
 <body class="bg-[url('../images/backgroundFeatures/searchUserBG.jpg')] bg-auto">
     <div id="userList" class="flex flex-col justify-center items-center my-12 gap-4">
         <div class="min-w-[60rem] mx-auto">
