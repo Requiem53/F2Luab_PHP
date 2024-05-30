@@ -14,7 +14,7 @@ if(isset($_GET['userID']) && filter_var($_GET['userID'], FILTER_VALIDATE_INT)) {
     $currUserID = $currUserID0['acctid'];
     $userID = $_GET['userID'];
     if(strcmp($userID, $currUserID) != 0){
-        // header("Location: homepage.php");
+        header("Location: homepage.php");
         echo $userID;
         echo $currUserID;
     }
