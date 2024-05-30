@@ -51,7 +51,8 @@
                         <p class="text-4xl text-white"><?php echo $row['username']?></p>
                     </div>
                     <div class="flex flex-row items-center justify-end h-full w-[38%] gap-6">
-                        <button class="min-w-[12rem] min-h-[3rem] w-[12rem] h-[3rem] px-5 text-2xl text-white bg-blue-500 hover:bg-blue-600 shadow-lg rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-25">
+                        <button  onclick="location.href ='userProfile.php?username=<?php echo $row['username'] ?>'"
+                        class="min-w-[12rem] min-h-[3rem] w-[12rem] h-[3rem] px-5 text-2xl text-white bg-blue-500 hover:bg-blue-600 shadow-lg rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-25">
                             View Profile</button>
                     </div>
                 </div>
